@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIOTS Authentication</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: white;
+      padding: 35px;
+      border-radius: 12px;
+      max-width: 480px;
+      text-align: center;
+      box-shadow: 0 4px 20px #0001;
+    }
+    h1 { color: #173b67; }
+    p { color: #555; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>SIOTS Authentication</h1>
+    <p id="status">Waiting for authentication response...</p>
+    <p>You may close this page after returning to the SIOTS application.</p>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const hasResponse =
+      params.has("authcode") ||
+      params.has("auth_code") ||
+      params.has("code");
+
+    document.getElementById("status").textContent =
+      hasResponse
+        ? "Authentication response received. Return to the SIOTS application."
+        : "SIOTS callback page is ready.";
+  </script>
+</body>
+</html>
